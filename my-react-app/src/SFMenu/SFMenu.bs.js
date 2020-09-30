@@ -5,6 +5,9 @@ var React = require("react");
 var Belt_List = require("bs-platform/lib/js/belt_List.js");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 var Json_decode = require("@glennsl/bs-json/src/Json_decode.bs.js");
+var ReactBootstrapMinJs = require("react-bootstrap/dist/react-bootstrap.min.js");
+
+var Button = {};
 
 function decodeMenuEntry(menuEntry) {
   return {
@@ -57,11 +60,15 @@ function SFMenu(Props) {
   };
   return React.createElement("div", undefined, React.createElement("p", undefined, "Hello"), typeof state === "number" ? (
                 state !== 0 ? "Unabled to load data" : "Loading..."
-              ) : React.createElement("div", undefined, React.createElement("ul", undefined, Belt_Array.mapWithIndex(Belt_List.toArray(state._0), displayEntry))));
+              ) : React.createElement("div", undefined, React.createElement(ReactBootstrapMinJs.Button, {
+                        variant: "primary",
+                        children: "Test"
+                      }), React.createElement("ul", undefined, Belt_Array.mapWithIndex(Belt_List.toArray(state._0), displayEntry))));
 }
 
 var make = SFMenu;
 
+exports.Button = Button;
 exports.Decode = Decode;
 exports.url = url;
 exports.make = make;
