@@ -2,6 +2,8 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
+var Belt_List = require("bs-platform/lib/js/belt_List.js");
+var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 var Json_decode = require("@glennsl/bs-json/src/Json_decode.bs.js");
 
 function decodeMenuEntry(menuEntry) {
@@ -48,9 +50,14 @@ function SFMenu(Props) {
           fetchMenuEntries(undefined);
           
         }), []);
+  var displayEntry = function (i, entry) {
+    return React.createElement("li", {
+                key: String(i)
+              }, entry.name);
+  };
   return React.createElement("div", undefined, React.createElement("p", undefined, "Hello"), typeof state === "number" ? (
                 state !== 0 ? "Unabled to load data" : "Loading..."
-              ) : "Loaded");
+              ) : React.createElement("div", undefined, React.createElement("ul", undefined, Belt_Array.mapWithIndex(Belt_List.toArray(state._0), displayEntry))));
 }
 
 var make = SFMenu;

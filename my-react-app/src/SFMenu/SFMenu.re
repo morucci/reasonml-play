@@ -41,12 +41,27 @@ let make = () => {
     None;
   });
 
+  let displayEntry = (i: int, entry: menuEntry) =>
+    <li key={Belt.Int.toString(i)}> {React.string(entry.name)} </li>;
+
   <div>
     <p> {React.string("Hello")} </p>
     {switch (state) {
      | Loading => React.string("Loading...")
      | Failure => React.string("Unabled to load data")
-     | Success(_) => React.string("Loaded")
+     | Success(entries) =>
+       <div>
+         <ul>
+           {React.array(
+              {
+                Belt.Array.mapWithIndex(
+                  Belt.List.toArray(entries),
+                  displayEntry,
+                );
+              },
+            )}
+         </ul>
+       </div>
      }}
   </div>;
 };
