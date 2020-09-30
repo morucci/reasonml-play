@@ -53,7 +53,7 @@ function SFMenu(Props) {
   var displayEntry = function (i, entry) {
     return React.createElement("li", {
                 key: String(i)
-              }, entry.name);
+              }, entry.name + (" " + entry.path));
   };
   return React.createElement("div", undefined, React.createElement("p", undefined, "Hello"), typeof state === "number" ? (
                 state !== 0 ? "Unabled to load data" : "Loading..."

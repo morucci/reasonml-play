@@ -42,7 +42,9 @@ let make = () => {
   });
 
   let displayEntry = (i: int, entry: menuEntry) =>
-    <li key={Belt.Int.toString(i)}> {React.string(entry.name)} </li>;
+    <li key={Belt.Int.toString(i)}>
+      {React.string(entry.name ++ " " ++ entry.path)}
+    </li>;
 
   <div>
     <p> {React.string("Hello")} </p>
@@ -52,14 +54,8 @@ let make = () => {
      | Success(entries) =>
        <div>
          <ul>
-           {React.array(
-              {
-                Belt.Array.mapWithIndex(
-                  Belt.List.toArray(entries),
-                  displayEntry,
-                );
-              },
-            )}
+           {Belt.Array.mapWithIndex(Belt.List.toArray(entries), displayEntry)
+            |> React.array}
          </ul>
        </div>
      }}
